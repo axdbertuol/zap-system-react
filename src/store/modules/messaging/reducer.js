@@ -1,18 +1,24 @@
 const INITIAL_STATE = {
-  items: [],
+  messages: [],
+  triggers: [],
+  channels: [],
 };
 
-const cart = (state = INITIAL_STATE, action) => {
+const messaging = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "ADD_BOOK_TO_CART":
-      console.log(state);
-
-      const { book } = action.payload;
-
+    case "ADD_MESSAGE": {
+      console.log("addMessage: " + action.payload.message);
       return {
         ...state,
-        items: [...state.items, book],
+        messages: [...state.messages, action.payload.message],
       };
+    }
+    case ("DELETE_MESSAGE", "LOAD_MESSAGES"): {
+      return {
+        ...state,
+        messages: action.payload,
+      };
+    }
 
     default:
       console.log("nao fiz nada");
@@ -20,4 +26,4 @@ const cart = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default cart;
+export default messaging;

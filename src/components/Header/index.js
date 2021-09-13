@@ -1,6 +1,3 @@
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
-
 // const Qtd = () => {
 //   const history = useHistory();
 
