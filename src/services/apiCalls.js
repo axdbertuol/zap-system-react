@@ -1,5 +1,6 @@
 import axiosApi from "./axiosApi";
 
+// Messages
 export const fetchMessages = async () => {
   try {
     const response = await axiosApi.get("/messages");

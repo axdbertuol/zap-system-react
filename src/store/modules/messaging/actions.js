@@ -73,7 +73,9 @@ export const editMessageThunk = (msgToEdit) => async (dispatch, getState) => {
   });
 };
 
-/** TRIGGERS  */
+/**
+ *  TRIGGERS
+ */
 export const deleteTriggerThunk = (id) => async (dispatch, getState) => {
   //checking
   const {
