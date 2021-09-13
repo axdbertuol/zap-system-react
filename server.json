@@ -86,6 +86,10 @@
     {
       "id": 9,
       "name": "falou_com_atendimento"
+    },
+    {
+      "id": 9991,
+      "name": "fechar_conta"
     }
   ]
 }

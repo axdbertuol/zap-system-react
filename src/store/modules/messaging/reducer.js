@@ -6,13 +6,7 @@ const INITIAL_STATE = {
 
 const messaging = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "ADD_MESSAGE": {
-      console.log("addMessage: " + action.payload.message);
-      return {
-        ...state,
-        messages: [...state.messages, action.payload.message],
-      };
-    }
+    case "ADD_MESSAGE":
     case "DELETE_MESSAGE":
     case "LOAD_MESSAGES": {
       return {
@@ -20,9 +14,24 @@ const messaging = (state = INITIAL_STATE, action) => {
         messages: action.payload,
       };
     }
+    case "ADD_TRIGGER":
+    case "DELETE_TRIGGER":
+    case "LOAD_TRIGGERS": {
+      return {
+        ...state,
+        triggers: action.payload,
+      };
+    }
+    case "ADD_CHANNEL":
+    case "DELETE_CHANNEL":
+    case "LOAD_CHANNELS": {
+      return {
+        ...state,
+        channels: action.payload,
+      };
+    }
 
     default:
-      console.log("nao fiz nada");
       return state;
   }
 };
