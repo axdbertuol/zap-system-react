@@ -13,7 +13,8 @@ const messaging = (state = INITIAL_STATE, action) => {
         messages: [...state.messages, action.payload.message],
       };
     }
-    case ("DELETE_MESSAGE", "LOAD_MESSAGES"): {
+    case "DELETE_MESSAGE":
+    case "LOAD_MESSAGES": {
       return {
         ...state,
         messages: action.payload,
