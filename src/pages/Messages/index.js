@@ -9,12 +9,12 @@ import "./styles.css";
 
 const MessagesPage = () => {
   const dispatch = useDispatch();
-  const triggers = useSelector(({ messaging }) => messaging.triggers);
-  const channels = useSelector(({ messaging }) => messaging.channels);
+  const { triggers, channels, messages } = useSelector(
+    ({ messaging }) => messaging
+  );
   const timers = useSelector(({ messaging }) =>
     messaging.messages.map((message) => ({ timer: message.timer }))
   );
-  const messages = useSelector(({ messaging }) => messaging.messages);
 
   const [search, setSearch] = useState("");
 
