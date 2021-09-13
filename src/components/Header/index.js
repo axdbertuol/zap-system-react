@@ -7,13 +7,18 @@
 //     <span onClick={() => history.push('/cart')}>{quantity} produtos</span>
 //   );
 // }
+// import { useHistory } from "react-router";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
+  // const history = useHistory();
+
   return (
     <header className="header-container">
       <div className="container header-content">
-        <span>Zap SYSTEM</span>
-        {/* <Qtd /> */}
+        <span>ZAP SYSTEM</span>
+        <NavLink to="/">Dashboard</NavLink>
+        <NavLink to="/messages">Messages</NavLink>
       </div>
     </header>
   );

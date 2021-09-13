@@ -1,17 +1,15 @@
 import { Route, Switch } from "react-router-dom";
 
-import Home from "../pages/Home";
+import Dashboard from "../pages/Dashboard";
+import Messages from "../pages/Messages";
 
 const Routes = () => {
   return (
     <Switch>
-      <Route path="/" exact render={() => <Home />} />
-      {/* <Route path="/details">
-          <Details />
-        </Route>
-        <Route path="/cart">
-          <Cart />
-        </Route> */}
+      <Route path="/" exact render={() => <Dashboard />} />
+      <Route path="/messages">
+        <Messages />
+      </Route>
     </Switch>
   );
 };
