@@ -15,7 +15,7 @@
       "message": " Na correria do dia a dia a Oi Conta Zap te ajuda a lembrar de algumas coisinhas! Ja conseguiu pagar seu boleto? Se sim, desconsidere a mensagem"
     },
     {
-      "id": 1,
+      "id": 12,
       "channel": "whatsapp",
       "trigger": "abertura_conta",
       "timer": "73:00",

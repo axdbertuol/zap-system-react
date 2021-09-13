@@ -1,49 +1,11 @@
-import React, { useState, useMemo } from "react";
-import {
-  Col,
-  Container,
-  Row,
-  Table,
-  Button,
-  Form,
-  FloatingLabel,
-} from "react-bootstrap";
+import { Col, Container, Row, Table, Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+
+import Select from "../../components/Select";
+import TableRows from "../../components/TableRows";
+
 import "./styles.css";
-
-const TableRow = ({ data, keys }) => {
-  const memoizedRow = useMemo(
-    () =>
-      Object.fromEntries(
-        Object.entries(data).filter((row) => keys.includes(row[0]))
-      ),
-    [data, keys]
-  );
-  return (
-    <tr>
-      <td>{memoizedRow.trigger}</td>
-      <td>{memoizedRow.channel}</td>
-      <td>{memoizedRow.timer}</td>
-      <td>
-        <Button onClick={() => console.log("id", memoizedRow.id)}>
-          Ver Mensagem
-        </Button>
-      </td>
-    </tr>
-  );
-};
-
-const Select = ({ data, objKey }) => (
-  <Form.Select>
-    <option value=""></option>
-    {data &&
-      data.map((item, index) => (
-        <option key={index + "_" + item.id} value={item[objKey]}>
-          {item[objKey]}
-        </option>
-      ))}
-  </Form.Select>
-);
 
 const MessagesPage = () => {
   const dispatch = useDispatch();
@@ -67,6 +29,7 @@ const MessagesPage = () => {
           sm={4}
           style={{ display: "flex", justifyContent: "flex-end" }}
         >
+          <Button variant="outline-dark"> Pesquisar </Button>
           <Button variant="dark"> Nova Mensagem</Button>
         </Col>
       </Row>
@@ -90,12 +53,8 @@ const MessagesPage = () => {
               <Select data={timers} objKey={"timer"} />
             </Form.Group>
           )}
-          <Col xs={12} style={{ padding: "20px 12px" }}>
-            <Button variant="outline-dark"> Pesquisar </Button>
-          </Col>
         </Row>
       </Form>
-      {/* <Row> */}
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -106,16 +65,9 @@ const MessagesPage = () => {
           </tr>
         </thead>
         <tbody>
-          {messages &&
-            messages.map((message) => (
-              <TableRow
-                data={message}
-                keys={["trigger", "channel", "timer", "id"]}
-              />
-            ))}
+          <TableRows messages={messages} />
         </tbody>
       </Table>
-      {/* </Row> */}
     </Container>
   );
 };
