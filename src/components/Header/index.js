@@ -1,26 +1,23 @@
-// const Qtd = () => {
-//   const history = useHistory();
-
-//   const quantity = useSelector((state) => state.cart.items.length);
-
-//   return (
-//     <span onClick={() => history.push('/cart')}>{quantity} produtos</span>
-//   );
-// }
-// import { useHistory } from "react-router";
-import { NavLink } from "react-router-dom";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 const Header = () => {
-  // const history = useHistory();
+  const history = useHistory();
 
   return (
-    <header className="header-container">
-      <div className="container header-content">
-        <span>ZAP SYSTEM</span>
-        <NavLink to="/">Dashboard</NavLink>
-        <NavLink to="/messages">Messages</NavLink>
-      </div>
-    </header>
+    <Navbar bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand onClick={() => history.push("/")}>
+          ZAP SYSTEM
+        </Navbar.Brand>
+        <Nav className="me-auto">
+          <Nav.Link onClick={() => history.push("/")}>Dashboard</Nav.Link>
+          <Nav.Link onClick={() => history.push("/messages")}>
+            Mensagens
+          </Nav.Link>
+        </Nav>
+      </Container>
+    </Navbar>
   );
 };
 

@@ -9,6 +9,8 @@ import {
   loadTriggers,
 } from "./store/modules/messaging/actions";
 import { store } from "./store";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 store.dispatch(loadTriggers());
 store.dispatch(loadChannels());
 store.dispatch(loadMessages());
