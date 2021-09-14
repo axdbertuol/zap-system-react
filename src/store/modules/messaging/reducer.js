@@ -2,10 +2,16 @@ const INITIAL_STATE = {
   messages: [],
   triggers: [],
   channels: [],
+  searchResults: null,
 };
 
 const messaging = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case "LOAD_SEARCH_MSGS":
+      return {
+        ...state,
+        searchResults: action.payload,
+      };
     case "ADD_MESSAGE":
     case "DELETE_MESSAGE":
     case "LOAD_MESSAGES": {

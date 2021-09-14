@@ -4,7 +4,7 @@ import {
   fetchMessages,
   editMessage,
   deleteMessage,
-  findMessage,
+  findMessages,
   fetchTriggers,
   editTrigger,
   postTriggers,
@@ -36,6 +36,13 @@ export const loadMessages = () => async (dispatch) => {
   const { data } = await fetchMessages();
   dispatch({ type: "LOAD_MESSAGES", payload: data });
 };
+
+export const findMessagesThunk =
+  (trigger, channel, timer) => async (dispatch) => {
+    const { data } = await findMessages(trigger, channel, timer);
+    dispatch({ type: "LOAD_SEARCH_MSGS", payload: data });
+  };
+
 export const saveNewMessage = (newMessage) => async (dispatch, getState) => {
   const {
     messaging: { messages },

@@ -3,6 +3,7 @@ import {
   saveNewMessage,
   deleteMessageThunk,
   editMessageThunk,
+  findMessagesThunk,
   saveNewTrigger,
   deleteTriggerThunk,
   editTriggerThunk,
@@ -111,6 +112,11 @@ const Home = () => {
           Editar
         </button>
       </div>
+      <button
+        onClick={() => dispatch(findMessagesThunk("abertura_conta", "", ""))}
+      >
+        Editar
+      </button>
     </div>
   );
 };

@@ -6,17 +6,20 @@ import Select from "../../components/Select";
 import TableRows from "../../components/TableRows";
 
 import "./styles.css";
+import { findMessagesThunk } from "../../store/modules/messaging/actions";
 
 const MessagesPage = () => {
   const dispatch = useDispatch();
-  const { triggers, channels, messages } = useSelector(
+  const { triggers, channels, messages, searchResults } = useSelector(
     ({ messaging }) => messaging
   );
   const timers = useSelector(({ messaging }) =>
     messaging.messages.map((message) => ({ timer: message.timer }))
   );
 
-  const [search, setSearch] = useState("");
+  const [triggerSelected, setTriggerSelected] = useState("");
+  const [channelSelected, setChannelSelected] = useState("");
+  const [timerSelected, setTimerSelected] = useState("");
 
   return (
     <Container fluid="md">
@@ -29,7 +32,20 @@ const MessagesPage = () => {
           sm={4}
           style={{ display: "flex", justifyContent: "flex-end" }}
         >
-          <Button variant="outline-dark"> Pesquisar </Button>
+          <Button
+            variant="outline-dark"
+            onClick={() => {
+              dispatch(
+                findMessagesThunk(
+                  triggerSelected,
+                  channelSelected,
+                  timerSelected
+                )
+              );
+            }}
+          >
+            Pesquisar
+          </Button>
           <Button variant="dark"> Nova Mensagem</Button>
         </Col>
       </Row>
@@ -38,19 +54,31 @@ const MessagesPage = () => {
           {triggers && triggers.length > 0 && (
             <Form.Group as={Col} controlId={"triggerSelect"}>
               <Form.Label>Gatilho</Form.Label>
-              <Select data={triggers} objKey={"name"} />
+              <Select
+                data={triggers}
+                objKey={"name"}
+                setSelected={setTriggerSelected}
+              />
             </Form.Group>
           )}
           {channels && channels.length > 0 && (
             <Form.Group as={Col} controlId={"channelSelect"}>
               <Form.Label>Canal</Form.Label>
-              <Select data={channels} objKey={"name"} />
+              <Select
+                data={channels}
+                objKey={"name"}
+                setSelected={setChannelSelected}
+              />
             </Form.Group>
           )}
           {timers && timers.length > 0 && (
             <Form.Group as={Col} controlId={"timerSelect"}>
               <Form.Label>Timer</Form.Label>
-              <Select data={timers} objKey={"timer"} />
+              <Select
+                data={timers}
+                objKey={"timer"}
+                setSelected={setTimerSelected}
+              />
             </Form.Group>
           )}
         </Row>
@@ -65,7 +93,7 @@ const MessagesPage = () => {
           </tr>
         </thead>
         <tbody>
-          <TableRows messages={messages} />
+          <TableRows messages={searchResults || messages} />
         </tbody>
       </Table>
     </Container>

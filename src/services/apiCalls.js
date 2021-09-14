@@ -9,9 +9,18 @@ export const fetchMessages = async () => {
     console.error("fetchMessages", error);
   }
 };
-export const findMessage = async (id) => {
+export const findMessages = async (trigger, channel, timer) => {
+  const params = {
+    trigger: trigger || null,
+    channel: channel || null,
+    timer: timer || null,
+  };
+
   try {
-    const response = await axiosApi.get(`/messages/${id}`);
+    const response = await axiosApi.get("/messages", {
+      params,
+    });
+    console.log(response);
     return response;
   } catch (error) {
     console.error("findMessage", error);
