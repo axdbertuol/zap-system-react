@@ -4,6 +4,8 @@ import { useHistory } from "react-router";
 import React, { useState } from "react";
 
 import { saveNewMessage } from "../../store/modules/messaging/actions";
+import "react-toastify/dist/ReactToastify.min.css";
+import { ToastContainer, toast } from "react-toastify";
 
 import "./styles.css";
 import Select from "../../components/Select";
@@ -21,6 +23,9 @@ const NewMessagePage = () => {
   const [channelSelected, setChannelSelected] = useState("");
   const [timerSelected, setTimerSelected] = useState("");
   const [newMessage, setNewMessage] = useState({});
+  const notify = (msg, bgColor, color) =>
+    toast(msg, { style: { backgroundColor: bgColor, color } });
+
   return (
     <Container
       fluid="md"
@@ -52,8 +57,10 @@ const NewMessagePage = () => {
                     message: newMessage,
                   })
                 );
+                notify("Mensagem criada com sucesso!", "lightgreen", "black");
+                setTimeout(() => history.push("/messages"), 2000);
               } else {
-                alert("Preencha todos os campos!");
+                notify("Preencha todos os campos!", "red", "white");
               }
             }}
           >
@@ -61,6 +68,12 @@ const NewMessagePage = () => {
           </Button>
         </Col>
       </Row>
+      <ToastContainer
+        hideProgressBar
+        closeOnClick
+        draggable
+        position="top-center"
+      />
       <Form style={{ padding: "10px", border: "1px solid #CCC" }}>
         <Row xs={3} style={{}}>
           {triggers && triggers.length > 0 && (

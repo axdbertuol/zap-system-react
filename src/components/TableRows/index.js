@@ -1,7 +1,9 @@
 import React, { useMemo } from "react";
 import { Button } from "react-bootstrap";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 
-const TableRow = ({ data, keys, action }) => {
+import "sweetalert2/src/sweetalert2.scss";
+const TableRow = ({ data, keys }) => {
   const memoizedRow = useMemo(
     () =>
       Object.fromEntries(
@@ -12,7 +14,7 @@ const TableRow = ({ data, keys, action }) => {
   return (
     <tr>
       {keys.map((key, index) => {
-        if (key === "id") {
+        if (key === "id" || key === "message") {
           return null;
         }
         return <td key={memoizedRow.id + "-" + index}>{memoizedRow[key]}</td>;
@@ -20,7 +22,9 @@ const TableRow = ({ data, keys, action }) => {
       <td>
         <Button
           variant="dark"
-          onClick={() => console.log("id", memoizedRow.id)}
+          onClick={() =>
+            Swal.fire({ title: "Mensagem", text: memoizedRow.message })
+          }
         >
           Ver Mensagem
         </Button>
@@ -38,9 +42,8 @@ const TableRows = ({ messages }) => {
   return messages.map((message) => (
     <TableRow
       data={message}
-      keys={["trigger", "channel", "timer", "id"]}
+      keys={["trigger", "channel", "timer", "id", "message"]}
       key={message.id + "_" + message.timer}
-      // action=
     />
   ));
 };

@@ -48,6 +48,34 @@
       "timer": "73:00",
       "message": "ffff",
       "id": 1631313726740
+    },
+    {
+      "channel": "whatsapp",
+      "trigger": "abertura_conta",
+      "timer": "15:00",
+      "message": "asdasd",
+      "id": 1631313726741
+    },
+    {
+      "channel": "whatsapp",
+      "trigger": "fez_pix",
+      "timer": "73:00",
+      "message": "adasdas",
+      "id": 1631313726742
+    },
+    {
+      "channel": "whatsapp",
+      "trigger": "fez_pix",
+      "timer": "73:00",
+      "message": "adasdas",
+      "id": 1631313726743
+    },
+    {
+      "channel": "whatsapp",
+      "trigger": "fez_pix",
+      "timer": "5:00",
+      "message": "asdasdasd",
+      "id": 1631313726744
     }
   ],
   "channels": [
