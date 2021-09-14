@@ -1,14 +1,15 @@
 import { Col, Container, Row, Button, Form } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import React, { useState } from "react";
 
-import { saveNewMessage } from "../../store/modules/messaging/actions";
 import "react-toastify/dist/ReactToastify.min.css";
-import { ToastContainer, toast } from "react-toastify";
+
+import { saveNewMessage } from "../../store/modules/messaging/actions";
+import Select from "../../components/Select";
 
 import "./styles.css";
-import Select from "../../components/Select";
 
 const NewMessagePage = () => {
   const dispatch = useDispatch();
