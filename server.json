@@ -34,6 +34,20 @@
       "trigger": "fez_pix",
       "timer": "2323",
       "message": "23232323"
+    },
+    {
+      "channel": "whatsapp",
+      "trigger": "consultou_saldo",
+      "timer": "5:00",
+      "message": {},
+      "id": 1631313726739
+    },
+    {
+      "channel": "email",
+      "trigger": "deletou_chave_pix",
+      "timer": "73:00",
+      "message": "ffff",
+      "id": 1631313726740
     }
   ],
   "channels": [

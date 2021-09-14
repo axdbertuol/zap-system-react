@@ -1,20 +1,18 @@
-import { Col, Container, Row, Table, Button, Form } from "react-bootstrap";
+import { Col, Container, Row, Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import React, { useState } from "react";
 
-import { findMessagesThunk } from "../../store/modules/messaging/actions";
-import Select from "../../components/Select";
-import TableRows from "../../components/TableRows";
+import { saveNewMessage } from "../../store/modules/messaging/actions";
 
 import "./styles.css";
+import Select from "../../components/Select";
 
-const MessagesPage = () => {
+const NewMessagePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { triggers, channels, messages, searchResults } = useSelector(
-    ({ messaging }) => messaging
-  );
+
+  const { triggers, channels } = useSelector(({ messaging }) => messaging);
   const timers = useSelector(({ messaging }) =>
     messaging.messages.map((message) => ({ timer: message.timer }))
   );
@@ -22,7 +20,7 @@ const MessagesPage = () => {
   const [triggerSelected, setTriggerSelected] = useState("");
   const [channelSelected, setChannelSelected] = useState("");
   const [timerSelected, setTimerSelected] = useState("");
-
+  const [newMessage, setNewMessage] = useState({});
   return (
     <Container
       fluid="md"
@@ -37,27 +35,34 @@ const MessagesPage = () => {
           sm={4}
           style={{ display: "flex", justifyContent: "flex-end" }}
         >
+          <Button variant="outline-dark" onClick={() => history.goBack()}>
+            Voltar
+          </Button>
           <Button
-            variant="outline-dark"
+            variant="dark"
             onClick={() => {
-              dispatch(
-                findMessagesThunk(
-                  triggerSelected,
-                  channelSelected,
-                  timerSelected
-                )
-              );
+              if (newMessage && triggerSelected && channelSelected) {
+                const id = Math.random().toString;
+                dispatch(
+                  saveNewMessage({
+                    id,
+                    channel: channelSelected,
+                    trigger: triggerSelected,
+                    timer: timerSelected,
+                    message: newMessage,
+                  })
+                );
+              } else {
+                alert("Preencha todos os campos!");
+              }
             }}
           >
-            Pesquisar
-          </Button>
-          <Button variant="dark" onClick={() => history.push("/nova-mensagem")}>
-            Nova Mensagem
+            Cadastrar
           </Button>
         </Col>
       </Row>
-      <Form>
-        <Row xs={3} className="upperRow">
+      <Form style={{ padding: "10px", border: "1px solid #CCC" }}>
+        <Row xs={3} style={{}}>
           {triggers && triggers.length > 0 && (
             <Form.Group as={Col} controlId={"triggerSelect"}>
               <Form.Label>Gatilho</Form.Label>
@@ -88,23 +93,20 @@ const MessagesPage = () => {
               />
             </Form.Group>
           )}
+          <Col xs={12}>
+            <Form.Group className="mb-3" controlId="ControlTextarea">
+              <Form.Label>Mensagem:</Form.Label>
+              <Form.Control
+                as="textarea"
+                onChange={(e) => setNewMessage(e.target.value)}
+                rows={3}
+              />
+            </Form.Group>
+          </Col>
         </Row>
       </Form>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Gatilho</th>
-            <th>Canal</th>
-            <th>Tempo</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <TableRows messages={searchResults || messages} />
-        </tbody>
-      </Table>
     </Container>
   );
 };
 
-export default MessagesPage;
+export default NewMessagePage;
