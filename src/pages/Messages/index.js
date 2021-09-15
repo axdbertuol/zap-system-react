@@ -56,36 +56,31 @@ const MessagesPage = () => {
       </Row>
       <Form>
         <Row xs={3} className="upperRow">
-          {triggers && triggers.length > 0 && (
-            <Form.Group as={Col} controlId={"triggerSelect"}>
-              <Form.Label>Gatilho</Form.Label>
-              <Select
-                data={triggers}
-                objKey={"name"}
-                setSelected={setTriggerSelected}
-              />
-            </Form.Group>
-          )}
-          {channels && channels.length > 0 && (
-            <Form.Group as={Col} controlId={"channelSelect"}>
-              <Form.Label>Canal</Form.Label>
-              <Select
-                data={channels}
-                objKey={"name"}
-                setSelected={setChannelSelected}
-              />
-            </Form.Group>
-          )}
-          {timers && timers.length > 0 && (
-            <Form.Group as={Col} controlId={"timerSelect"}>
-              <Form.Label>Timer</Form.Label>
-              <Select
-                data={timers}
-                objKey={"timer"}
-                setSelected={setTimerSelected}
-              />
-            </Form.Group>
-          )}
+          <Form.Group as={Col} controlId={"triggerSelect"}>
+            <Form.Label>Gatilho</Form.Label>
+            <Select
+              data={triggers}
+              objKey={"name"}
+              handleChange={setTriggerSelected}
+            />
+          </Form.Group>
+          <Form.Group as={Col} controlId={"channelSelect"}>
+            <Form.Label>Canal</Form.Label>
+            <Select
+              data={channels}
+              objKey={"name"}
+              handleChange={setChannelSelected}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId={"timerSelect"}>
+            <Form.Label>Timer</Form.Label>
+            <Select
+              data={timers}
+              objKey={"timer"}
+              handleChange={setTimerSelected}
+            />
+          </Form.Group>
         </Row>
       </Form>
       <Table striped bordered hover>

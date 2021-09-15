@@ -46,9 +46,8 @@ const NewMessagePage = () => {
         message: yup.string().required("Campo Obrigatório"),
       }),
       onSubmit: (values) => {
-        const id = Math.floor(Math.random() * 100000).toString();
-
         if (values) {
+          const id = Math.floor(Math.random() * 100000).toString();
           dispatch(saveNewMessage({ id, ...values }));
           notify("Mensagem cadastrada com sucesso.", "green", "white");
         } else {
