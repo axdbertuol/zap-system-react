@@ -4,6 +4,7 @@ import axiosInstance from "./axiosInstance";
 export const fetchMessages = async () => {
   try {
     const response = await axiosInstance.get("/messages");
+    console.log(response);
     return response;
   } catch (error) {
     console.error("fetchMessages", error);
