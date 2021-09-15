@@ -21,6 +21,9 @@ const MessagesPage = () => {
   const [channelSelected, setChannelSelected] = useState("");
   const [timerSelected, setTimerSelected] = useState("");
 
+  const handleChange = (e, callbackFn) => {
+    callbackFn(e.target.value);
+  };
   return (
     <Container
       fluid="md"
@@ -38,6 +41,7 @@ const MessagesPage = () => {
           <Button
             variant="outline-dark"
             onClick={() => {
+              console.log(triggerSelected, channelSelected, timerSelected);
               dispatch(
                 findMessagesThunk(
                   triggerSelected,
@@ -61,7 +65,7 @@ const MessagesPage = () => {
             <Select
               data={triggers}
               objKey={"name"}
-              handleChange={setTriggerSelected}
+              handleChange={(e) => handleChange(e, setTriggerSelected)}
             />
           </Form.Group>
           <Form.Group as={Col} controlId={"channelSelect"}>
@@ -69,7 +73,7 @@ const MessagesPage = () => {
             <Select
               data={channels}
               objKey={"name"}
-              handleChange={setChannelSelected}
+              handleChange={(e) => handleChange(e, setChannelSelected)}
             />
           </Form.Group>
 
@@ -78,7 +82,7 @@ const MessagesPage = () => {
             <Select
               data={timers}
               objKey={"timer"}
-              handleChange={setTimerSelected}
+              handleChange={(e) => handleChange(e, setTimerSelected)}
             />
           </Form.Group>
         </Row>
