@@ -76,6 +76,13 @@
       "timer": "5:00",
       "message": "asdasdasd",
       "id": 1631313726744
+    },
+    {
+      "channel": "email",
+      "trigger": "fez_pix",
+      "timer": "12:00",
+      "message": "asdasdas",
+      "id": 1631313726745
     }
   ],
   "channels": [

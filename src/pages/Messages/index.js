@@ -6,18 +6,16 @@ import React, { useState } from "react";
 import { findMessagesThunk } from "../../store/modules/messaging/actions";
 import Select from "../../components/Select";
 import TableRows from "../../components/TableRows";
-
+import useMessages from "../../hooks/useMessages";
 import "./styles.css";
 
 const MessagesPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { triggers, channels, messages, searchResults } = useSelector(
-    ({ messaging }) => messaging
-  );
-  const timers = useSelector(({ messaging }) =>
-    messaging.messages.map((message) => ({ timer: message.timer }))
-  );
+
+  const { searchResults } = useSelector(({ messaging }) => messaging);
+
+  const [triggers, channels, messages, timers] = useMessages();
 
   const [triggerSelected, setTriggerSelected] = useState("");
   const [channelSelected, setChannelSelected] = useState("");

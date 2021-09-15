@@ -10,20 +10,19 @@ import { saveNewMessage } from "../../store/modules/messaging/actions";
 import Select from "../../components/Select";
 
 import "./styles.css";
+import useMessages from "../../hooks/useMessages";
 
 const NewMessagePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { triggers, channels } = useSelector(({ messaging }) => messaging);
-  const timers = useSelector(({ messaging }) =>
-    messaging.messages.map((message) => ({ timer: message.timer }))
-  );
+  const [triggers, channels, timers] = useMessages();
 
   const [triggerSelected, setTriggerSelected] = useState("");
   const [channelSelected, setChannelSelected] = useState("");
   const [timerSelected, setTimerSelected] = useState("");
   const [newMessage, setNewMessage] = useState({});
+
   const notify = (msg, bgColor, color) =>
     toast(msg, { style: { backgroundColor: bgColor, color } });
 
