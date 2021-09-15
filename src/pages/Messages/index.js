@@ -41,7 +41,6 @@ const MessagesPage = () => {
           <Button
             variant="outline-dark"
             onClick={() => {
-              console.log(triggerSelected, channelSelected, timerSelected);
               dispatch(
                 findMessagesThunk(
                   triggerSelected,

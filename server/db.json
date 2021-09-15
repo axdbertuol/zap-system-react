@@ -182,5 +182,13 @@
       "id": 9991,
       "name": "fechar_conta"
     }
+  ],
+  "users":[
+    {
+      "id": 1,
+      "email": "galo@test.com",
+      "username": "galo",
+      "password": "olag"
+    }
   ]
 }

@@ -13,7 +13,7 @@ import {
   fetchChannels,
   postChannels,
   editChannel,
-} from "../../../services/apiCalls";
+} from "../../../services/msgApi";
 
 export const deleteMessageThunk = (id) => async (dispatch, getState) => {
   //checking
@@ -113,7 +113,7 @@ export const saveNewTrigger = (newTrigger) => async (dispatch, getState) => {
   //checking
   const msgExists = triggers.findIndex((trig) => trig.id === newTrigger.id);
   if (msgExists !== -1) {
-    // TODO: return error message already exists
+    // TODO: return error trigger already exists
     return;
   }
 
@@ -131,7 +131,7 @@ export const editTriggerThunk = (trigToEdit) => async (dispatch, getState) => {
 
   const trigExists = triggers.findIndex((trig) => trig.id === trigToEdit.id);
   if (trigExists === -1) {
-    // TODO: return error message does not exist
+    // TODO: return error trigger does not exist
     return;
   }
 
@@ -185,7 +185,7 @@ export const saveNewChannel = (newChannel) => async (dispatch, getState) => {
   //checking
   const index = channels.findIndex((msg) => msg.id === newChannel.id);
   if (index !== -1) {
-    // TODO: return error message already exists
+    // TODO: return error channel already exists
     return;
   }
 
@@ -207,7 +207,7 @@ export const editChannelThunk =
       (channel) => channel.id === channelToEdit.id
     );
     if (channelExists === -1) {
-      // TODO: return error message does not exist
+      // TODO: return error channel does not exist
       return;
     }
 

@@ -1,9 +1,9 @@
-import axiosApi from "./axiosApi";
+import axiosInstance from "./axiosInstance";
 
 // Messages
 export const fetchMessages = async () => {
   try {
-    const response = await axiosApi.get("/messages");
+    const response = await axiosInstance.get("/messages");
     return response;
   } catch (error) {
     console.error("fetchMessages", error);
@@ -17,7 +17,7 @@ export const findMessages = async (trigger, channel, timer) => {
   };
 
   try {
-    const response = await axiosApi.get("/messages", {
+    const response = await axiosInstance.get("/messages", {
       params,
     });
     console.log(response);
@@ -28,7 +28,7 @@ export const findMessages = async (trigger, channel, timer) => {
 };
 export const postMessages = async (messages) => {
   try {
-    const response = await axiosApi.post("/messages", messages);
+    const response = await axiosInstance.post("/messages", messages);
     return response;
   } catch (error) {
     console.error("postMessages", error);
@@ -36,7 +36,10 @@ export const postMessages = async (messages) => {
 };
 export const editMessage = async (msgToEdit) => {
   try {
-    const response = await axiosApi.put(`/messages/${msgToEdit.id}`, msgToEdit);
+    const response = await axiosInstance.put(
+      `/messages/${msgToEdit.id}`,
+      msgToEdit
+    );
     return response;
   } catch (error) {
     console.error("editMessage", error);
@@ -44,7 +47,7 @@ export const editMessage = async (msgToEdit) => {
 };
 export const deleteMessage = async (id) => {
   try {
-    const response = await axiosApi.delete(`/messages/${id}`);
+    const response = await axiosInstance.delete(`/messages/${id}`);
     return response;
   } catch (error) {
     console.error("deleteMessage", error);
@@ -53,7 +56,7 @@ export const deleteMessage = async (id) => {
 
 export const fetchTriggers = async () => {
   try {
-    const response = await axiosApi.get("/triggers");
+    const response = await axiosInstance.get("/triggers");
     return response;
   } catch (error) {
     console.error("fetchTriggers", error);
@@ -61,7 +64,7 @@ export const fetchTriggers = async () => {
 };
 export const findTrigger = async (id) => {
   try {
-    const response = await axiosApi.get(`/triggers/${id}`);
+    const response = await axiosInstance.get(`/triggers/${id}`);
     return response;
   } catch (error) {
     console.error("findTrigger", error);
@@ -69,7 +72,7 @@ export const findTrigger = async (id) => {
 };
 export const postTriggers = async (triggers) => {
   try {
-    const response = await axiosApi.post("/triggers", triggers);
+    const response = await axiosInstance.post("/triggers", triggers);
     return response;
   } catch (error) {
     console.error("postTriggers", error);
@@ -77,7 +80,7 @@ export const postTriggers = async (triggers) => {
 };
 export const editTrigger = async (trigToEdit) => {
   try {
-    const response = await axiosApi.put(
+    const response = await axiosInstance.put(
       `/triggers/${trigToEdit.id}`,
       trigToEdit
     );
@@ -88,7 +91,7 @@ export const editTrigger = async (trigToEdit) => {
 };
 export const deleteTrigger = async (id) => {
   try {
-    const response = await axiosApi.delete(`/triggers/${id}`);
+    const response = await axiosInstance.delete(`/triggers/${id}`);
     return response;
   } catch (error) {
     console.error("deleteTrigger", error);
@@ -98,7 +101,7 @@ export const deleteTrigger = async (id) => {
 // CHANNELS
 export const fetchChannels = async () => {
   try {
-    const response = await axiosApi.get("/channels");
+    const response = await axiosInstance.get("/channels");
     return response;
   } catch (error) {
     console.error("fetchChannels", error);
@@ -106,7 +109,7 @@ export const fetchChannels = async () => {
 };
 export const findChannel = async (id) => {
   try {
-    const response = await axiosApi.get(`/channels/${id}`);
+    const response = await axiosInstance.get(`/channels/${id}`);
     return response;
   } catch (error) {
     console.error("findChannel", error);
@@ -114,7 +117,7 @@ export const findChannel = async (id) => {
 };
 export const postChannels = async (channels) => {
   try {
-    const response = await axiosApi.post("/channels", channels);
+    const response = await axiosInstance.post("/channels", channels);
     return response;
   } catch (error) {
     console.error("postChannels", error);
@@ -122,7 +125,7 @@ export const postChannels = async (channels) => {
 };
 export const editChannel = async (channelToEdit) => {
   try {
-    const response = await axiosApi.put(
+    const response = await axiosInstance.put(
       `/channels/${channelToEdit.id}`,
       channelToEdit
     );
@@ -133,7 +136,7 @@ export const editChannel = async (channelToEdit) => {
 };
 export const deleteChannel = async (id) => {
   try {
-    const response = await axiosApi.delete(`/channels/${id}`);
+    const response = await axiosInstance.delete(`/channels/${id}`);
     return response;
   } catch (error) {
     console.error("deleteChannel", error);
