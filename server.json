@@ -83,6 +83,27 @@
       "timer": "12:00",
       "message": "asdasdas",
       "id": 1631313726745
+    },
+    {
+      "id": "99982",
+      "trigger": "consultou_saldo",
+      "channel": "email",
+      "timer": "15:00",
+      "message": "aaaa"
+    },
+    {
+      "id": "20227",
+      "trigger": "consultou_saldo",
+      "channel": "email",
+      "timer": "2323",
+      "message": "asdasdas"
+    },
+    {
+      "id": "48188",
+      "trigger": "consultou_saldo",
+      "channel": "email",
+      "timer": "5:00",
+      "message": "1111"
     }
   ],
   "channels": [

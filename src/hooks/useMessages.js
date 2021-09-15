@@ -19,6 +19,7 @@ const useMessages = () => {
     loadChannels();
     loadMessages();
   }, []);
+
   return [triggers, channels, messages, timers];
 };
 

@@ -1,9 +1,9 @@
 import { Col, Container, Row, Button, Form } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import React, { useState } from "react";
-
+import { useFormik } from "formik";
 import "react-toastify/dist/ReactToastify.min.css";
 
 import { saveNewMessage } from "../../store/modules/messaging/actions";
@@ -11,6 +11,7 @@ import Select from "../../components/Select";
 
 import "./styles.css";
 import useMessages from "../../hooks/useMessages";
+import * as yup from "yup";
 
 const NewMessagePage = () => {
   const dispatch = useDispatch();
@@ -26,94 +27,138 @@ const NewMessagePage = () => {
   const notify = (msg, bgColor, color) =>
     toast(msg, { style: { backgroundColor: bgColor, color } });
 
+  const { values, errors, handleChange, handleBlur, handleSubmit, touched } =
+    useFormik({
+      initialValues: {
+        trigger: "",
+        channel: "",
+        timer: "",
+        message: "",
+      },
+      validationSchema: yup.object({
+        trigger: yup
+          .string()
+          .oneOf(triggers.map((t) => t.name))
+          .required("Campo Obrigatório"),
+        channel: yup
+          .string()
+          .oneOf(channels.map((c) => c.name))
+          .required("Campo Obrigatório"),
+        timer: yup
+          .string()
+          .oneOf(timers.map((t) => t.timer))
+          .required("Campo Obrigatório"),
+        message: yup.string().required("Campo Obrigatório"),
+      }),
+      onSubmit: (values) => {
+        const id = Math.floor(Math.random() * 100000).toString();
+
+        if (values) {
+          dispatch(saveNewMessage({ id, ...values }));
+          notify("Mensagem cadastrada com sucesso.", "green", "white");
+        } else {
+          notify("Houve algum erro", "red", "white");
+        }
+      },
+    });
+
   return (
     <Container
       fluid="md"
       style={{ width: "70%", marginLeft: "auto", marginRight: "auto" }}
     >
-      <Row className="upperRow">
-        <Col sm={8} xs={12}>
-          <h2>Mensagens</h2>
-        </Col>
-        <Col
-          xs={12}
-          sm={4}
-          style={{ display: "flex", justifyContent: "flex-end" }}
-        >
-          <Button variant="outline-dark" onClick={() => history.goBack()}>
-            Voltar
-          </Button>
-          <Button
-            variant="dark"
-            onClick={() => {
-              if (newMessage && triggerSelected && channelSelected) {
-                const id = Math.random().toString;
-                dispatch(
-                  saveNewMessage({
-                    id,
-                    channel: channelSelected,
-                    trigger: triggerSelected,
-                    timer: timerSelected,
-                    message: newMessage,
-                  })
-                );
-                notify("Mensagem criada com sucesso!", "lightgreen", "black");
-                setTimeout(() => history.push("/messages"), 2000);
-              } else {
-                notify("Preencha todos os campos!", "red", "white");
-              }
-            }}
+      <Form
+        onSubmit={handleSubmit}
+        style={{ padding: "10px", border: "1px solid #CCC" }}
+      >
+        <Row className="upperRow">
+          <Col sm={8} xs={12}>
+            <h2>Mensagens</h2>
+          </Col>
+          <Col
+            xs={12}
+            sm={4}
+            style={{ display: "flex", justifyContent: "flex-end" }}
           >
-            Cadastrar
-          </Button>
-        </Col>
-      </Row>
-      <ToastContainer
-        hideProgressBar
-        closeOnClick
-        draggable
-        position="top-center"
-      />
-      <Form style={{ padding: "10px", border: "1px solid #CCC" }}>
+            <Button variant="outline-dark" onClick={() => history.goBack()}>
+              Voltar
+            </Button>
+            <Button variant="dark" type="submit">
+              Cadastrar
+            </Button>
+          </Col>
+        </Row>
+        <ToastContainer
+          hideProgressBar
+          closeOnClick
+          draggable
+          position="top-center"
+        />
         <Row xs={3} style={{}}>
-          {triggers && triggers.length > 0 && (
-            <Form.Group as={Col} controlId={"triggerSelect"}>
-              <Form.Label>Gatilho</Form.Label>
-              <Select
-                data={triggers}
-                objKey={"name"}
-                setSelected={setTriggerSelected}
-              />
-            </Form.Group>
-          )}
-          {channels && channels.length > 0 && (
-            <Form.Group as={Col} controlId={"channelSelect"}>
-              <Form.Label>Canal</Form.Label>
-              <Select
-                data={channels}
-                objKey={"name"}
-                setSelected={setChannelSelected}
-              />
-            </Form.Group>
-          )}
-          {timers && timers.length > 0 && (
-            <Form.Group as={Col} controlId={"timerSelect"}>
-              <Form.Label>Timer</Form.Label>
-              <Select
-                data={timers}
-                objKey={"timer"}
-                setSelected={setTimerSelected}
-              />
-            </Form.Group>
-          )}
+          <Form.Group as={Col} controlId={"triggerSelect"}>
+            <Form.Label>Gatilho</Form.Label>
+            <Select
+              id="trigger"
+              name="trigger"
+              value={values.trigger}
+              data={triggers}
+              objKey={"name"}
+              handleChange={handleChange}
+              onBlur={handleBlur}
+              isInvalid={!!errors.trigger && !!touched.trigger}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.trigger}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} controlId={"channelSelect"}>
+            <Form.Label>Canal</Form.Label>
+            <Select
+              id="channel"
+              name="channel"
+              value={values.channel}
+              data={channels}
+              objKey={"name"}
+              handleChange={handleChange}
+              onBlur={handleBlur}
+              isInvalid={!!errors.channel && !!touched.channel}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.channel}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} controlId={"timerSelect"}>
+            <Form.Label>Timer</Form.Label>
+            <Select
+              id="timer"
+              name="timer"
+              value={values.timer}
+              data={timers}
+              objKey={"timer"}
+              handleChange={handleChange}
+              onBlur={handleBlur}
+              isInvalid={!!errors.timer && !!touched.timer}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.timer}
+            </Form.Control.Feedback>
+          </Form.Group>
           <Col xs={12}>
-            <Form.Group className="mb-3" controlId="ControlTextarea">
+            <Form.Group className="mb-3">
               <Form.Label>Mensagem:</Form.Label>
               <Form.Control
                 as="textarea"
-                onChange={(e) => setNewMessage(e.target.value)}
+                id="message"
+                name="message"
+                value={values.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isInvalid={!!errors.message && !!touched.message}
                 rows={3}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.message}
+              </Form.Control.Feedback>
             </Form.Group>
           </Col>
         </Row>
