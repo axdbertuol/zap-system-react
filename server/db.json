@@ -189,6 +189,18 @@
       "email": "galo@test.com",
       "username": "galo",
       "password": "olag"
+    },
+    {
+      "id": 2,
+      "email": "alex@test.com",
+      "username": "alex",
+      "password": "silver"
+    },
+    {
+      "id": 3,
+      "email": "jj@test.com",
+      "username": "jj",
+      "password": "silver"
     }
   ]
 }

@@ -5,9 +5,17 @@ const INITIAL_STATE = {
 
 const auth = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "SET_AUTHENTICATED":
+    case "LOGOUT":
+    case "SET_USER_UNAUTHORIZED":
       return {
         ...state,
+        isAuthenticated: false,
+        user: {},
+      };
+    case "SET_USER_AUTHORIZED":
+      return {
+        ...state,
+        user: action.payload.user,
         isAuthenticated: true,
       };
 

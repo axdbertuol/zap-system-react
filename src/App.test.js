@@ -1,8 +1,11 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import { authenticateUser } from "./services/authApi";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("Auth routes ", () => {
+  test("Should return success", async () => {
+    const response = await authenticateUser("galo@test.com", "olag");
+    console.log(response);
+    expect(response.data.email).toEqual("galo@test.com");
+    expect(response.status).toBe(200);
+  });
 });
