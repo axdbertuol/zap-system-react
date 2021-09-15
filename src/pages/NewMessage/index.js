@@ -19,11 +19,6 @@ const NewMessagePage = () => {
 
   const [triggers, channels, timers] = useMessages();
 
-  const [triggerSelected, setTriggerSelected] = useState("");
-  const [channelSelected, setChannelSelected] = useState("");
-  const [timerSelected, setTimerSelected] = useState("");
-  const [newMessage, setNewMessage] = useState({});
-
   const notify = (msg, bgColor, color) =>
     toast(msg, { style: { backgroundColor: bgColor, color } });
 
@@ -94,7 +89,7 @@ const NewMessagePage = () => {
           draggable
           position="top-center"
         />
-        <Row xs={3} style={{}}>
+        <Row xs={3}>
           <Form.Group as={Col} controlId={"triggerSelect"}>
             <Form.Label>Gatilho</Form.Label>
             <Select

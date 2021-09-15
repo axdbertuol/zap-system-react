@@ -1,14 +1,26 @@
 import { Form } from "react-bootstrap";
 
-const Select = ({ id, name, value, data, objKey, handleChange, isInvalid }) => (
+const Select = ({
+  id,
+  name,
+  value,
+  data,
+  objKey,
+  handleChange,
+  isInvalid,
+  onBlur,
+  ...props
+}) => (
   <Form.Select
     id={id}
     name={name}
     onChange={handleChange}
     isInvalid={isInvalid}
+    onBlur={onBlur}
+    {...props}
   >
     <option value={value}></option>
-    {data &&
+    {Array.isArray(data) &&
       data.map((item, index) => (
         <option key={index + "_" + item.id} value={item[objKey]}>
           {item[objKey]}

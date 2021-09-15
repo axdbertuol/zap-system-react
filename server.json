@@ -104,6 +104,20 @@
       "channel": "email",
       "timer": "5:00",
       "message": "1111"
+    },
+    {
+      "id": "21461",
+      "trigger": "consultou_saldo",
+      "channel": "whatsapp",
+      "timer": "12:00",
+      "message": "Eita"
+    },
+    {
+      "id": "68450",
+      "trigger": "consultou_saldo",
+      "channel": "whatsapp",
+      "timer": "12:00",
+      "message": "32432"
     }
   ],
   "channels": [
