@@ -11,12 +11,14 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import { login } from "../../store/modules/auth/actions";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, useHistory } from "react-router";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
   const notify = (msg, bgColor, color) =>
     toast(msg, { style: { backgroundColor: bgColor, color } });
   const { values, errors, handleChange, handleBlur, handleSubmit, touched } =
@@ -38,6 +40,7 @@ const LoginPage = () => {
       onSubmit: (values) => {
         console.log(values);
         if (values) {
+          console.log("oi");
           dispatch(login(values.email, values.password));
           setTimeout(() => {
             history.push("/");
@@ -48,6 +51,11 @@ const LoginPage = () => {
         }
       },
     });
+  if (isAuthenticated) {
+    notify("Por favor, deslogue antes.", "red", "white");
+    setTimeout(() => {}, 2000);
+    return <Redirect to="/" />;
+  }
   return (
     <Container
       fluid={"md"}

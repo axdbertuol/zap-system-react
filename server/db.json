@@ -132,6 +132,13 @@
       "channel": "email",
       "timer": "5:00",
       "message": "x"
+    },
+    {
+      "id": "43260",
+      "trigger": "fez_pix",
+      "channel": "whatsapp",
+      "timer": "15:00",
+      "message": "asdfasd"
     }
   ],
   "channels": [

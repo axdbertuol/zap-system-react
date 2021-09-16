@@ -5,6 +5,8 @@ import LoginPage from "../pages/Login";
 import MessagesPage from "../pages/Messages";
 import NewMessagePage from "../pages/NewMessage";
 import { useSelector } from "react-redux";
+import { persistor } from "../store";
+
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
 function PrivateRoute({ children, ...rest }) {
@@ -12,24 +14,22 @@ function PrivateRoute({ children, ...rest }) {
   //   state: { token },
   // } = useContext(AuthContext);
   const { isAuthenticated } = useSelector((state) => state.auth);
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        isAuthenticated ? (
-          children
-        ) : (
-          //redirect to Login
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  );
+
+  const render = ({ location }) => {
+    if (isAuthenticated) {
+      return children;
+    }
+    persistor.purge();
+    return (
+      <Redirect
+        to={{
+          pathname: "/login",
+          state: { from: location },
+        }}
+      />
+    );
+  };
+  return <Route {...rest} render={render} />;
 }
 
 const Routes = () => {

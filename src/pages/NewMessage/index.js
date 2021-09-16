@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { useHistory } from "react-router";
 import * as yup from "yup";
-import React, { useState } from "react";
+import React from "react";
 
 import "react-toastify/dist/ReactToastify.min.css";
 

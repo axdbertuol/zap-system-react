@@ -15,7 +15,7 @@ const auth = (state = INITIAL_STATE, action) => {
     case "SET_USER_AUTHORIZED":
       return {
         ...state,
-        user: action.payload.user,
+        user: action.payload,
         isAuthenticated: true,
       };
 

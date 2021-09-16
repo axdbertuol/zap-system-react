@@ -6,17 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
 
-import {
-  loadMessages,
-  loadChannels,
-  loadTriggers,
-} from "./store/modules/messaging/actions";
-import { store } from "./store";
-
-store.dispatch(loadTriggers());
-store.dispatch(loadChannels());
-store.dispatch(loadMessages());
-
 ReactDOM.render(
   <React.StrictMode>
     <App />
