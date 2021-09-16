@@ -125,6 +125,13 @@
       "channel": "whatsapp",
       "timer": "12:00",
       "message": "Eita"
+    },
+    {
+      "id": "5139",
+      "trigger": "alterou_dados_pessois",
+      "channel": "email",
+      "timer": "5:00",
+      "message": "x"
     }
   ],
   "channels": [
@@ -183,7 +190,7 @@
       "name": "fechar_conta"
     }
   ],
-  "users":[
+  "users": [
     {
       "id": 1,
       "email": "galo@test.com",

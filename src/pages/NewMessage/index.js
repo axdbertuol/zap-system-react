@@ -1,17 +1,18 @@
 import { Col, Container, Row, Button, Form } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
-import React, { useState } from "react";
 import { useFormik } from "formik";
+import { useHistory } from "react-router";
+import * as yup from "yup";
+import React, { useState } from "react";
+
 import "react-toastify/dist/ReactToastify.min.css";
 
 import { saveNewMessage } from "../../store/modules/messaging/actions";
 import Select from "../../components/Select";
+import useMessages from "../../hooks/useMessages";
 
 import "./styles.css";
-import useMessages from "../../hooks/useMessages";
-import * as yup from "yup";
 
 const NewMessagePage = () => {
   const dispatch = useDispatch();
@@ -105,7 +106,7 @@ const NewMessagePage = () => {
               {errors.trigger}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group as={Col} controlId={"channelSelect"}>
+          <Form.Group as={Col}>
             <Form.Label>Canal</Form.Label>
             <Select
               id="channel"
@@ -121,7 +122,7 @@ const NewMessagePage = () => {
               {errors.channel}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group as={Col} controlId={"timerSelect"}>
+          <Form.Group as={Col}>
             <Form.Label>Timer</Form.Label>
             <Select
               id="timer"

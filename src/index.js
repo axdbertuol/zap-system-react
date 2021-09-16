@@ -1,15 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
+import "./index.css";
+
 import {
   loadMessages,
   loadChannels,
   loadTriggers,
 } from "./store/modules/messaging/actions";
 import { store } from "./store";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 store.dispatch(loadTriggers());
 store.dispatch(loadChannels());
