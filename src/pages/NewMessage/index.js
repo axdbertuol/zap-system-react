@@ -62,10 +62,7 @@ const NewMessagePage = () => {
       fluid="md"
       style={{ width: "70%", marginLeft: "auto", marginRight: "auto" }}
     >
-      <Form
-        onSubmit={handleSubmit}
-        style={{ padding: "10px", border: "1px solid #CCC" }}
-      >
+      <Form onSubmit={handleSubmit} style={{ padding: "10px" }}>
         <Row className="upperRow">
           <Col sm={8} xs={12}>
             <h2>Mensagens</h2>
@@ -89,7 +86,7 @@ const NewMessagePage = () => {
           draggable
           position="top-center"
         />
-        <Row xs={3}>
+        <Row xs={3} style={{ border: "1px solid #CCC", padding: "10px" }}>
           <Form.Group as={Col} controlId={"triggerSelect"}>
             <Form.Label>Gatilho</Form.Label>
             <Select
