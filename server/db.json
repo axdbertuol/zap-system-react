@@ -139,6 +139,104 @@
       "channel": "whatsapp",
       "timer": "15:00",
       "message": "asdfasd"
+    },
+    {
+      "id": "22051",
+      "trigger": "abertura_conta",
+      "channel": "whatsapp",
+      "timer": "11:54",
+      "message": "ae"
+    },
+    {
+      "id": "74524",
+      "trigger": "fez_pix",
+      "channel": "email",
+      "timer": "41:12",
+      "message": "aaa"
+    },
+    {
+      "id": "16368",
+      "trigger": "fex_transferencia_outro_banco",
+      "channel": "email",
+      "timer": "11:11",
+      "message": "s"
+    },
+    {
+      "id": "51563",
+      "trigger": "fex_transferencia_outro_banco",
+      "channel": "email",
+      "timer": "11:12",
+      "message": "a"
+    },
+    {
+      "id": "69789",
+      "trigger": "deletou_chave_pix",
+      "channel": "email",
+      "timer": "1111",
+      "message": "a"
+    },
+    {
+      "id": "78918",
+      "trigger": "deletou_chave_pix",
+      "channel": "email",
+      "timer": "111",
+      "message": "a"
+    },
+    {
+      "id": "5066",
+      "trigger": "alterou_dados_pessois",
+      "channel": "email",
+      "timer": "11:12",
+      "message": "aloha"
+    },
+    {
+      "id": "14484",
+      "trigger": "abertura_conta",
+      "channel": "email",
+      "timer": "12:34",
+      "message": "sdasdas"
+    },
+    {
+      "id": "22633",
+      "trigger": "abertura_conta",
+      "channel": "email",
+      "timer": "12:12",
+      "message": "111"
+    },
+    {
+      "id": "23506",
+      "trigger": "abertura_conta",
+      "channel": "email",
+      "timer": "11:51",
+      "message": "dasdas"
+    },
+    {
+      "id": "79263",
+      "trigger": "abertura_conta",
+      "channel": "email",
+      "timer": "21:12",
+      "message": "111"
+    },
+    {
+      "id": "45095",
+      "trigger": "abertura_conta",
+      "channel": "email",
+      "timer": "01:21",
+      "message": "111"
+    },
+    {
+      "id": "22556",
+      "trigger": "abertura_conta",
+      "channel": "email",
+      "timer": "23:11",
+      "message": "aaaa"
+    },
+    {
+      "id": "69327",
+      "trigger": "abertura_conta",
+      "channel": "email",
+      "timer": "20:11",
+      "message": "aaaa"
     }
   ],
   "channels": [

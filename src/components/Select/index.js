@@ -19,7 +19,7 @@ const Select = ({
     onBlur={onBlur}
     {...props}
   >
-    <option value={value}></option>
+    <option default value={""}></option>
     {Array.isArray(data) &&
       data.map((item, index) => (
         <option key={index + "_" + item.id} value={item[objKey]}>
