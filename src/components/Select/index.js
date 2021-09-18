@@ -1,5 +1,7 @@
 import { Form } from "react-bootstrap";
 
+const Option = ({ value }) => <option value={value}>{value}</option>;
+
 const Select = ({
   id,
   name,
@@ -9,6 +11,7 @@ const Select = ({
   handleChange,
   isInvalid,
   onBlur,
+  defaultValue,
   ...props
 }) => (
   <Form.Select
@@ -17,14 +20,13 @@ const Select = ({
     onChange={handleChange}
     isInvalid={isInvalid}
     onBlur={onBlur}
+    defaultValue={defaultValue}
     {...props}
   >
-    <option default value={""}></option>
+    <Option value="" />
     {Array.isArray(data) &&
       data.map((item, index) => (
-        <option key={index + "_" + item.id} value={item[objKey]}>
-          {item[objKey]}
-        </option>
+        <Option key={index + "_" + item.id} value={item[objKey]} />
       ))}
   </Form.Select>
 );

@@ -39,8 +39,12 @@ export const loadMessages = () => async (dispatch) => {
 
 export const findMessagesThunk =
   (trigger, channel, timer) => async (dispatch) => {
+    // console.log(trigger, channel, timer);
     const { data } = await findMessages(trigger, channel, timer);
-    dispatch({ type: "LOAD_SEARCH_MSGS", payload: data });
+    dispatch({
+      type: "LOAD_SEARCH_MSGS",
+      payload: { results: data, filters: { trigger, channel, timer } },
+    });
   };
 
 export const saveNewMessage = (newMessage) => async (dispatch, getState) => {

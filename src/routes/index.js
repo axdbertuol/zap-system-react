@@ -10,16 +10,13 @@ import { persistor } from "../store";
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
 function PrivateRoute({ children, ...rest }) {
-  // const {
-  //   state: { token },
-  // } = useContext(AuthContext);
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   const render = ({ location }) => {
     if (isAuthenticated) {
       return children;
     }
-    persistor.purge();
+    // persistor.purge();
     return (
       <Redirect
         to={{

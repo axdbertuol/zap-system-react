@@ -2,7 +2,7 @@ const INITIAL_STATE = {
   messages: [],
   triggers: [],
   channels: [],
-  searchResults: null,
+  search: {},
 };
 
 const messaging = (state = INITIAL_STATE, action) => {
@@ -10,7 +10,7 @@ const messaging = (state = INITIAL_STATE, action) => {
     case "LOAD_SEARCH_MSGS":
       return {
         ...state,
-        searchResults: action.payload,
+        search: action.payload,
       };
     case "ADD_MESSAGE":
     case "DELETE_MESSAGE":

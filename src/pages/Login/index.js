@@ -6,6 +6,7 @@ import {
   Form,
   Row,
   FloatingLabel,
+  Image,
 } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -13,6 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { login } from "../../store/modules/auth/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
+import zapLogo from "../../assets/zap.ico";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -69,7 +71,6 @@ const LoginPage = () => {
           margin: "0 auto",
           display: "flex",
           flexDirection: "column",
-          marginTop: "10px",
           border: "1px solid #CCC",
           borderRadius: "5px",
           padding: "20px",
@@ -78,6 +79,14 @@ const LoginPage = () => {
         onSubmit={handleSubmit}
       >
         <Row>
+          <Col
+            xs={12}
+            className="pb-3"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <Image src={zapLogo} alt="Logo zap" rounded />
+          </Col>
+
           <Col>
             <h2 style={{ textAlign: "center" }}>Login</h2>
           </Col>

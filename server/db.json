@@ -272,6 +272,27 @@
       "channel": "email",
       "timer": "01:20",
       "message": "😀ae <b>obrigado</b>😀"
+    },
+    {
+      "id": "37640",
+      "trigger": "fez_pix",
+      "channel": "sms",
+      "timer": "11:12",
+      "message": "adasd😂"
+    },
+    {
+      "id": "4658",
+      "trigger": "alterou_dados_pessois",
+      "channel": "whatsapp",
+      "timer": "12:30",
+      "message": "😀<i>eita</i>"
+    },
+    {
+      "id": "87480",
+      "trigger": "recarregou_celular",
+      "channel": "email",
+      "timer": "11:11",
+      "message": "Olá😗"
     }
   ],
   "channels": [
@@ -335,7 +356,7 @@
       "id": 1,
       "email": "galo@test.com",
       "username": "galo",
-      "password": "olag"
+      "password": "olag1"
     },
     {
       "id": 2,

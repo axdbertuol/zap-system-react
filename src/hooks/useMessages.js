@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   loadMessages,
   loadChannels,
@@ -7,6 +7,7 @@ import {
 } from "../store/modules/messaging/actions";
 
 const useMessages = () => {
+  const dispatch = useDispatch();
   const { triggers, channels, messages } = useSelector(
     ({ messaging }) => messaging
   );
@@ -21,10 +22,22 @@ const useMessages = () => {
   });
 
   useEffect(() => {
-    loadTriggers();
-    loadChannels();
-    loadMessages();
-  }, []);
+    if (!triggers || triggers.length === 0) {
+      dispatch(loadTriggers());
+    }
+    if (!channels || channels.length === 0) {
+      dispatch(loadChannels());
+    }
+    if (!messages || messages.length === 0) {
+      dispatch(loadMessages());
+    }
+  }, [dispatch, channels, messages, triggers]);
+
+  useEffect(() => {
+    console.log(triggers);
+    console.log(channels);
+    console.log(messages);
+  }, [triggers, channels, messages]);
 
   return [triggers, channels, messages, timers];
 };

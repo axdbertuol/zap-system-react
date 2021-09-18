@@ -13,7 +13,9 @@ const MessagesPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { searchResults } = useSelector(({ messaging }) => messaging);
+  const {
+    search: { results, filters },
+  } = useSelector(({ messaging }) => messaging);
 
   const [triggers, channels, messages, timers] = useMessages();
 
@@ -64,6 +66,7 @@ const MessagesPage = () => {
             <Form.Label>Gatilho</Form.Label>
             <Select
               data={triggers}
+              defaultValue={filters ? filters.trigger : ""}
               objKey={"name"}
               handleChange={(e) => handleChange(e, setTriggerSelected)}
             />
@@ -72,6 +75,7 @@ const MessagesPage = () => {
             <Form.Label>Canal</Form.Label>
             <Select
               data={channels}
+              defaultValue={filters ? filters.channel : ""}
               objKey={"name"}
               handleChange={(e) => handleChange(e, setChannelSelected)}
             />
@@ -81,6 +85,7 @@ const MessagesPage = () => {
             <Form.Label>Timer</Form.Label>
             <Select
               data={timers}
+              defaultValue={filters ? filters.timer : ""}
               objKey={"timer"}
               handleChange={(e) => handleChange(e, setTimerSelected)}
             />
@@ -97,7 +102,7 @@ const MessagesPage = () => {
           </tr>
         </thead>
         <tbody>
-          <TableRows messages={searchResults || messages} />
+          <TableRows messages={results || messages} />
         </tbody>
       </Table>
     </Container>

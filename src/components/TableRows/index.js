@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";
+import DOMPurify from "dompurify";
 
 const TableRow = ({ data, keys }) => {
   const memoizedRow = useMemo(
@@ -12,6 +13,10 @@ const TableRow = ({ data, keys }) => {
       ),
     [data, keys]
   );
+
+  const sanitizedData = () => ({
+    __html: DOMPurify.sanitize(memoizedRow.message),
+  });
   return (
     <tr>
       {keys.map((key, index) => {
@@ -24,7 +29,10 @@ const TableRow = ({ data, keys }) => {
         <Button
           variant="dark"
           onClick={() =>
-            Swal.fire({ title: "Mensagem", text: memoizedRow.message })
+            Swal.fire({
+              title: "Mensagem",
+              html: sanitizedData().__html,
+            })
           }
         >
           Ver Mensagem
