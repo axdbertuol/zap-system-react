@@ -44,8 +44,6 @@ const TableRow = ({ data, keys }) => {
 
 const TableRows = ({ messages }) => {
   if (!Array.isArray(messages)) {
-    console.log("messages", typeof messages);
-    console.log("messages", messages);
     return null;
   }
   return messages.map((message) => (

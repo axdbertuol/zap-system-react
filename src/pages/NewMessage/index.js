@@ -73,7 +73,6 @@ const NewMessagePage = () => {
     e.preventDefault();
     try {
       const isValidForm = await schema.validate({ ...formValues });
-      console.log(isValidForm);
       if (isValidForm) {
         const id = Math.floor(Math.random() * 100000).toString();
 

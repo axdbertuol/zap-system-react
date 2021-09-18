@@ -4,7 +4,6 @@ import axiosInstance from "./axiosInstance";
 export const fetchMessages = async () => {
   try {
     const response = await axiosInstance.get("/messages");
-    console.log(response);
     return response;
   } catch (error) {
     console.error("fetchMessages", error);
@@ -21,7 +20,6 @@ export const findMessages = async (trigger, channel, timer) => {
     const response = await axiosInstance.get("/messages", {
       params,
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("findMessage", error);

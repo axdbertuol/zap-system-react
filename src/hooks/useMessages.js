@@ -33,11 +33,11 @@ const useMessages = () => {
     }
   }, [dispatch, channels, messages, triggers]);
 
-  useEffect(() => {
-    console.log(triggers);
-    console.log(channels);
-    console.log(messages);
-  }, [triggers, channels, messages]);
+  // useEffect(() => {
+  //   console.log(triggers);
+  //   console.log(channels);
+  //   console.log(messages);
+  // }, [triggers, channels, messages]);
 
   return [triggers, channels, messages, timers];
 };

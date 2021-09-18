@@ -39,7 +39,6 @@ export const loadMessages = () => async (dispatch) => {
 
 export const findMessagesThunk =
   (trigger, channel, timer) => async (dispatch) => {
-    // console.log(trigger, channel, timer);
     const { data } = await findMessages(trigger, channel, timer);
     dispatch({
       type: "LOAD_SEARCH_MSGS",
@@ -60,7 +59,6 @@ export const saveNewMessage = (newMessage) => async (dispatch, getState) => {
   }
 
   const { data } = await postMessages(newMessage);
-  console.log("response data", data);
   dispatch({
     type: "ADD_MESSAGE",
     payload: [...messages, data],
@@ -122,7 +120,6 @@ export const saveNewTrigger = (newTrigger) => async (dispatch, getState) => {
   }
 
   const { data } = await postTriggers(newTrigger);
-  console.log("response data", data);
   dispatch({
     type: "ADD_TRIGGER",
     payload: [...triggers, data],
@@ -194,7 +191,6 @@ export const saveNewChannel = (newChannel) => async (dispatch, getState) => {
   }
 
   const { data } = await postChannels(newChannel);
-  console.log("response data", data);
   dispatch({
     type: "ADD_CHANNEL",
     payload: [...channels, data],

@@ -40,9 +40,7 @@ const LoginPage = () => {
           .required("*Campo Obrigatório"),
       }),
       onSubmit: (values) => {
-        console.log(values);
         if (values) {
-          console.log("oi");
           dispatch(login(values.email, values.password));
           setTimeout(() => {
             history.push("/");
