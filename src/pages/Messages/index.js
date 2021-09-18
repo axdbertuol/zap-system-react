@@ -49,6 +49,7 @@ const MessagesPage = () => {
                 )
               );
             }}
+            className="mx-1"
           >
             Pesquisar
           </Button>
