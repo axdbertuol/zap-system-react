@@ -237,6 +237,27 @@
       "channel": "email",
       "timer": "20:11",
       "message": "aaaa"
+    },
+    {
+      "id": "68608",
+      "trigger": "abertura_conta",
+      "channel": "email",
+      "timer": "11:12",
+      "message": "aaaa"
+    },
+    {
+      "id": "88269",
+      "trigger": "abertura_conta",
+      "channel": "email",
+      "timer": "12:39",
+      "message": "aaaa"
+    },
+    {
+      "id": "31398",
+      "trigger": "consultou_saldo",
+      "channel": "email",
+      "timer": "12:34",
+      "message": "aaaa"
     }
   ],
   "channels": [

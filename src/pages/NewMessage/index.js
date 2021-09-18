@@ -14,7 +14,7 @@ import * as yup from "yup";
 import React, { useEffect, useState } from "react";
 
 import "react-toastify/dist/ReactToastify.min.css";
-
+import DOMPurify from "dompurify";
 import { saveNewMessage } from "../../store/modules/messaging/actions";
 import Select from "../../components/Select";
 import useMessages from "../../hooks/useMessages";
@@ -123,6 +123,10 @@ const NewMessagePage = () => {
     });
   };
 
+  const sanitizedData = () => ({
+    __html: DOMPurify.sanitize(formValues.message),
+  });
+
   useEffect(() => {
     if (errors) {
       console.log(errors);
@@ -133,10 +137,7 @@ const NewMessagePage = () => {
   }, [errors, formValues]);
 
   return (
-    <Container
-      fluid="md"
-      style={{ width: "70%", marginLeft: "auto", marginRight: "auto" }}
-    >
+    <Container fluid="md" className={"w-75 my-auto"}>
       <Form onSubmit={handleSubmit} style={{ padding: "10px" }}>
         <Row className="upperRow">
           <Col sm={8} xs={12}>
@@ -167,8 +168,13 @@ const NewMessagePage = () => {
         />
         <Row
           xs={3}
+          lg={4}
           className="py-3"
-          style={{ border: "1px solid #CCC", padding: "10px" }}
+          style={{
+            border: "1px solid #CCC",
+            padding: "10px",
+            justifyContent: "center",
+          }}
         >
           <Form.Group as={Col}>
             <Form.Label>Gatilho</Form.Label>
@@ -219,20 +225,24 @@ const NewMessagePage = () => {
               {errors.timer}
             </Form.Control.Feedback>
           </Form.Group>
-          <Col xs={12}>
-            <Form.Group className="my-3">
-              <Form.Label>Mensagem:</Form.Label>
-              <Form.Control
-                as="textarea"
-                id="message"
-                name="message"
-                value={formValues.message}
-                onChange={handleOnChange}
-                // onBlur={handleOnBlur}
-                rows={3}
-              />
-            </Form.Group>
-          </Col>
+          <Form.Group as={Col} xs={12} lg={9} className="my-3">
+            <Form.Label>Mensagem:</Form.Label>
+            <Form.Control
+              as="textarea"
+              id="message"
+              name="message"
+              value={formValues.message}
+              onChange={handleOnChange}
+              onBlur={handleOnBlur}
+              rows={3}
+            />
+          </Form.Group>
+        </Row>
+        <Row>
+          <Col dangerouslySetInnerHTML={sanitizedData()}></Col>
+          <Col
+            dangerouslySetInnerHTML={{ __html: formValues.message || "" }}
+          ></Col>
         </Row>
       </Form>
     </Container>

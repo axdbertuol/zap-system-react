@@ -10,9 +10,16 @@ const useMessages = () => {
   const { triggers, channels, messages } = useSelector(
     ({ messaging }) => messaging
   );
-  const timers = useSelector(({ messaging }) =>
-    messaging.messages.map((message) => ({ timer: message.timer }))
-  );
+  const timers = useSelector(({ messaging }) => {
+    const timersArr = messaging.messages.map((message) => message.timer);
+    // filter uniques
+    return timersArr
+      .filter((value, index, self) => {
+        console.log(self.indexOf(value) === index);
+        return self.indexOf(value) === index;
+      })
+      .map((t) => ({ timer: t }));
+  });
 
   useEffect(() => {
     loadTriggers();
