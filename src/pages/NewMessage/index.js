@@ -5,16 +5,19 @@ import {
   Button,
   Form,
   FloatingLabel,
+  Dropdown,
+  DropdownButton,
 } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { useFormik } from "formik";
 import { useHistory } from "react-router";
 import * as yup from "yup";
+import DOMPurify from "dompurify";
+import Picker from "emoji-picker-react";
 import React, { useEffect, useState } from "react";
 
 import "react-toastify/dist/ReactToastify.min.css";
-import DOMPurify from "dompurify";
+
 import { saveNewMessage } from "../../store/modules/messaging/actions";
 import Select from "../../components/Select";
 import useMessages from "../../hooks/useMessages";
@@ -62,6 +65,13 @@ const NewMessagePage = () => {
   const notify = (msg, bgColor, color) =>
     toast(msg, { style: { backgroundColor: bgColor, color } });
 
+  const [chosenEmoji, setChosenEmoji] = useState(null);
+  const [showEmojis, setShowEmojis] = useState(false);
+
+  const onEmojiClick = (event, emojiObject) => {
+    setChosenEmoji(emojiObject);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -86,7 +96,7 @@ const NewMessagePage = () => {
   const handleOnChange = (e) => {
     let splitValue = e.target.value.split("");
     if (e.target.name === "timer") {
-      // check if user is deleting
+      // check if user is deleting if so delete
       if (e.target.value.length < formValues[e.target.name].length) {
         setFormValues({ ...formValues, [e.target.name]: e.target.value });
         return;
@@ -135,6 +145,13 @@ const NewMessagePage = () => {
       console.log(formValues);
     }
   }, [errors, formValues]);
+
+  useEffect(() => {
+    if (chosenEmoji) {
+      formValues.message += chosenEmoji.emoji;
+      setChosenEmoji(null);
+    }
+  }, [chosenEmoji, formValues]);
 
   return (
     <Container fluid="md" className={"w-75 my-auto"}>
@@ -215,7 +232,9 @@ const NewMessagePage = () => {
               type="text"
               name="timer"
               id="timer"
-              placeholder={new Date().toLocaleTimeString("pt-BR").substr(0, 5)}
+              placeholder={
+                "Ex: " + new Date().toLocaleTimeString("pt-BR").substr(0, 5)
+              }
               value={formValues.timer}
               onChange={handleOnChange}
               onBlur={handleOnBlur}
@@ -231,19 +250,34 @@ const NewMessagePage = () => {
               as="textarea"
               id="message"
               name="message"
+              placeholder="Sua mensagem. Você pode formatá-la com tags html. Ex: <b>message</b>"
               value={formValues.message}
               onChange={handleOnChange}
               onBlur={handleOnBlur}
               rows={3}
             />
           </Form.Group>
+          <Col xs={12} lg={9} className="my">
+            <DropdownButton id="dropdown-emoji" title="Emojis">
+              <Picker onEmojiClick={onEmojiClick} />
+            </DropdownButton>
+          </Col>
         </Row>
-        <Row>
-          <Col dangerouslySetInnerHTML={sanitizedData()}></Col>
-          <Col
-            dangerouslySetInnerHTML={{ __html: formValues.message || "" }}
-          ></Col>
-        </Row>
+        {formValues.message && (
+          <Row
+            style={{
+              padding: "20px",
+              justifyContent: "center",
+              marginTop: "10px",
+            }}
+          >
+            <h5 className={"text-center"}>Sua mensagem aparecerá assim:</h5>
+            <Col
+              className={"text-center"}
+              dangerouslySetInnerHTML={sanitizedData()}
+            />
+          </Row>
+        )}
       </Form>
     </Container>
   );

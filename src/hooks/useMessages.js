@@ -15,7 +15,6 @@ const useMessages = () => {
     // filter uniques
     return timersArr
       .filter((value, index, self) => {
-        console.log(self.indexOf(value) === index);
         return self.indexOf(value) === index;
       })
       .map((t) => ({ timer: t }));

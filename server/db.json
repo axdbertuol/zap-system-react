@@ -258,6 +258,20 @@
       "channel": "email",
       "timer": "12:34",
       "message": "aaaa"
+    },
+    {
+      "id": "9048",
+      "trigger": "abertura_conta",
+      "channel": "email",
+      "timer": "12:21",
+      "message": "<b>show</b>"
+    },
+    {
+      "id": "1872",
+      "trigger": "fez_pix",
+      "channel": "email",
+      "timer": "01:20",
+      "message": "😀ae <b>obrigado</b>😀"
     }
   ],
   "channels": [
