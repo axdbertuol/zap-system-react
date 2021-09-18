@@ -4,8 +4,6 @@ import {
   Row,
   Button,
   Form,
-  FloatingLabel,
-  Dropdown,
   DropdownButton,
 } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
@@ -66,7 +64,6 @@ const NewMessagePage = () => {
     toast(msg, { style: { backgroundColor: bgColor, color } });
 
   const [chosenEmoji, setChosenEmoji] = useState(null);
-  const [showEmojis, setShowEmojis] = useState(false);
 
   const onEmojiClick = (event, emojiObject) => {
     setChosenEmoji(emojiObject);
@@ -136,15 +133,6 @@ const NewMessagePage = () => {
   const sanitizedData = () => ({
     __html: DOMPurify.sanitize(formValues.message),
   });
-
-  useEffect(() => {
-    if (errors) {
-      console.log(errors);
-    }
-    if (formValues) {
-      console.log(formValues);
-    }
-  }, [errors, formValues]);
 
   useEffect(() => {
     if (chosenEmoji) {
@@ -244,21 +232,25 @@ const NewMessagePage = () => {
               {errors.timer}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group as={Col} xs={12} lg={9} className="my-3">
+          <Form.Group as={Col} xs={12} lg={9} className="mt-3">
             <Form.Label>Mensagem:</Form.Label>
             <Form.Control
               as="textarea"
               id="message"
               name="message"
-              placeholder="Sua mensagem. Você pode formatá-la com tags html. Ex: <b>message</b>"
+              placeholder="Você pode formatar a mensagem com tags html. Ex: <b>message</b>"
               value={formValues.message}
               onChange={handleOnChange}
               onBlur={handleOnBlur}
               rows={3}
             />
           </Form.Group>
-          <Col xs={12} lg={9} className="my">
-            <DropdownButton id="dropdown-emoji" title="Emojis">
+          <Col xs={12} lg={9} className="mt-1">
+            <DropdownButton
+              variant="secondary"
+              id="dropdown-emoji"
+              title="&#128515;"
+            >
               <Picker onEmojiClick={onEmojiClick} />
             </DropdownButton>
           </Col>
