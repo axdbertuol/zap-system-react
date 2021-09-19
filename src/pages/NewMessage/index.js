@@ -92,7 +92,7 @@ const NewMessagePage = () => {
   const handleOnChange = (e) => {
     let splitValue = e.target.value.split("");
     if (e.target.name === "timer") {
-      // check if user is deleting if so delete
+      // check if user is deleting if so, delete
       if (e.target.value.length < formValues[e.target.name].length) {
         setFormValues({ ...formValues, [e.target.name]: e.target.value });
         return;

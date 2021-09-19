@@ -1,6 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 import { logout } from "../../store/modules/auth/actions";
 
 const Header = () => {

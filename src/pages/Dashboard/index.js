@@ -1,5 +1,6 @@
-import React from "react";
 import { Container } from "react-bootstrap";
+import React from "react";
+
 import HorizontalBarChart from "../../components/HorizontalBarChart";
 import LineChart from "../../components/LineChart";
 

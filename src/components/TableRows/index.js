@@ -1,9 +1,9 @@
 import { Button } from "react-bootstrap";
+import DOMPurify from "dompurify";
 import React, { useMemo } from "react";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";
-import DOMPurify from "dompurify";
 
 const TableRow = ({ data, keys }) => {
   const memoizedRow = useMemo(

@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Button,
   Col,
@@ -45,7 +46,6 @@ const LoginPage = () => {
           setTimeout(() => {
             history.push("/");
           }, 2000);
-          // notify("Mensagem cadastrada com sucesso.", "green", "white");
         } else {
           notify("Houve algum erro", "red", "white");
         }

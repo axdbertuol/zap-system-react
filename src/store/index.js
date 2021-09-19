@@ -1,10 +1,11 @@
-import { createStore, applyMiddleware } from "redux";
-import rootReducer from "./modules/rootReducer";
-import { persistStore, persistReducer } from "redux-persist";
 import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import storage from "redux-persist/lib/storage";
+import { createStore, applyMiddleware } from "redux";
 import { encryptTransform } from "redux-persist-transform-encrypt";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import thunk from "redux-thunk";
+
+import rootReducer from "./modules/rootReducer";
 
 const persistConfig = {
   key: "root",

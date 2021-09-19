@@ -7,6 +7,7 @@ import { findMessagesThunk } from "../../store/modules/messaging/actions";
 import Select from "../../components/Select";
 import TableRows from "../../components/TableRows";
 import useMessages from "../../hooks/useMessages";
+
 import "./styles.css";
 
 const MessagesPage = () => {

@@ -1,5 +1,6 @@
 import { authenticateUser } from "../../../services/authApi";
 import { persistor } from "../../";
+
 export const login = (email, password) => async (dispatch, getState) => {
   const response = await authenticateUser(email, password);
   if (response.data) {

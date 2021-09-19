@@ -1,11 +1,12 @@
-import { Route, Switch } from "react-router-dom";
 import { Redirect } from "react-router";
+import { Route, Switch } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+// import { persistor } from "../store";
 import Dashboard from "../pages/Dashboard";
 import LoginPage from "../pages/Login";
 import MessagesPage from "../pages/Messages";
 import NewMessagePage from "../pages/NewMessage";
-import { useSelector } from "react-redux";
-import { persistor } from "../store";
 
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
