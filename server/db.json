@@ -18,7 +18,7 @@
       "id": 12,
       "channel": "whatsapp",
       "trigger": "abertura_conta",
-      "timer": "73:00",
+      "timer": "03:00",
       "message": " Na correria do dia a dia a Oi Conta Zap te ajuda a lembrar de algumas coisinhas! Ja conseguiu pagar seu boleto? Se sim, desconsidere a mensagem"
     },
     {
@@ -45,7 +45,7 @@
     {
       "channel": "email",
       "trigger": "deletou_chave_pix",
-      "timer": "73:00",
+      "timer": "13:00",
       "message": "ffff",
       "id": 1631313726740
     },
@@ -59,14 +59,14 @@
     {
       "channel": "whatsapp",
       "trigger": "fez_pix",
-      "timer": "73:00",
+      "timer": "13:00",
       "message": "adasdas",
       "id": 1631313726742
     },
     {
       "channel": "whatsapp",
       "trigger": "fez_pix",
-      "timer": "73:00",
+      "timer": "13:00",
       "message": "adasdas",
       "id": 1631313726743
     },
@@ -293,6 +293,13 @@
       "channel": "email",
       "timer": "11:11",
       "message": "Olá😗"
+    },
+    {
+      "id": "37446",
+      "trigger": "abertura_conta",
+      "channel": "email",
+      "timer": "11:21",
+      "message": "Jota😎"
     }
   ],
   "channels": [

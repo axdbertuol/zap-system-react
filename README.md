@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+## IMPORTANTE: Usuários de teste
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Usuário: alex@test.com Senha: silver
+Usuário: galo@test.com Senha: olag1
+Usuário: jj@test.com Senha: silver
 
 ## Available Scripts
 
