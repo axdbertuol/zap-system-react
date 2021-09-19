@@ -171,8 +171,6 @@ const NewMessagePage = () => {
           position="top-center"
         />
         <Row
-          xs={3}
-          lg={4}
           className="py-3"
           style={{
             border: "1px solid #CCC",
@@ -180,7 +178,7 @@ const NewMessagePage = () => {
             justifyContent: "center",
           }}
         >
-          <Form.Group as={Col}>
+          <Form.Group as={Col} xs={12} lg={3}>
             <Form.Label>Gatilho</Form.Label>
             <Select
               id="trigger"
@@ -196,7 +194,7 @@ const NewMessagePage = () => {
               {errors.trigger}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group as={Col}>
+          <Form.Group as={Col} xs={12} lg={3}>
             <Form.Label>Canal</Form.Label>
             <Select
               id="channel"
@@ -212,7 +210,7 @@ const NewMessagePage = () => {
               {errors.channel}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group as={Col}>
+          <Form.Group as={Col} xs={12} lg={3}>
             <Form.Label>Timer</Form.Label>
 
             <Form.Control

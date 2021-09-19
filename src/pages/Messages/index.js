@@ -62,8 +62,8 @@ const MessagesPage = () => {
         </Col>
       </Row>
       <Form>
-        <Row xs={3} className="upperRow">
-          <Form.Group as={Col} controlId={"triggerSelect"}>
+        <Row className="upperRow">
+          <Form.Group as={Col} lg={3} xs={12} controlId={"triggerSelect"}>
             <Form.Label>Gatilho</Form.Label>
             <Select
               data={triggers}
@@ -72,7 +72,7 @@ const MessagesPage = () => {
               handleChange={(e) => handleChange(e, setTriggerSelected)}
             />
           </Form.Group>
-          <Form.Group as={Col} controlId={"channelSelect"}>
+          <Form.Group as={Col} lg={3} xs={12} controlId={"channelSelect"}>
             <Form.Label>Canal</Form.Label>
             <Select
               data={channels}
@@ -82,7 +82,7 @@ const MessagesPage = () => {
             />
           </Form.Group>
 
-          <Form.Group as={Col} controlId={"timerSelect"}>
+          <Form.Group as={Col} lg={3} xs={12} controlId={"timerSelect"}>
             <Form.Label>Timer</Form.Label>
             <Select
               data={timers}
@@ -93,7 +93,7 @@ const MessagesPage = () => {
           </Form.Group>
         </Row>
       </Form>
-      <Table striped bordered hover>
+      <Table striped bordered hover size="sm">
         <thead>
           <tr>
             <th>Gatilho</th>
